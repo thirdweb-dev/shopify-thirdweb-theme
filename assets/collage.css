@@ -195,3 +195,7 @@
   outline: none;
   box-shadow: none;
 }
+
+.collage .collage-card-spacing img {
+  object-fit: contain;
+}

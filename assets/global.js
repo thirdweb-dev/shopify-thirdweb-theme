@@ -68,12 +68,6 @@ function trapFocus(container, elementToFocus = container) {
   document.addEventListener('focusin', trapFocusHandlers.focusin);
 
   elementToFocus.focus();
-
-  if (elementToFocus.tagName === 'INPUT' &&
-    ['search', 'text', 'email', 'url'].includes(elementToFocus.type) &&
-    elementToFocus.value) {
-    elementToFocus.setSelectionRange(0, elementToFocus.value.length);
-  }
 }
 
 // Here run the querySelector to figure out if the browser supports :focus-visible or not and run code based on it.
@@ -146,29 +140,11 @@ class QuantityInput extends HTMLElement {
   constructor() {
     super();
     this.input = this.querySelector('input');
-    this.changeEvent = new Event('change', { bubbles: true });
+    this.changeEvent = new Event('change', { bubbles: true })
 
-    this.input.addEventListener('change', this.onInputChange.bind(this));
     this.querySelectorAll('button').forEach(
       (button) => button.addEventListener('click', this.onButtonClick.bind(this))
     );
-  }
-
-  quantityUpdateUnsubscriber = undefined;
-
-  connectedCallback() {
-    this.validateQtyRules();
-    this.quantityUpdateUnsubscriber = subscribe(PUB_SUB_EVENTS.quantityUpdate, this.validateQtyRules.bind(this));
-  }
-
-  disconnectedCallback() {
-    if (this.quantityUpdateUnsubscriber) {
-      this.quantityUpdateUnsubscriber();
-    }
-  }
-
-  onInputChange(event) {
-    this.validateQtyRules();
   }
 
   onButtonClick(event) {
@@ -177,20 +153,6 @@ class QuantityInput extends HTMLElement {
 
     event.target.name === 'plus' ? this.input.stepUp() : this.input.stepDown();
     if (previousValue !== this.input.value) this.input.dispatchEvent(this.changeEvent);
-  }
-
-  validateQtyRules() {
-    const value = parseInt(this.input.value);
-    if (this.input.min) {
-      const min = parseInt(this.input.min);
-      const buttonMinus = this.querySelector(".quantity__button[name='minus']");
-      buttonMinus.classList.toggle('disabled', value <= min);
-    }
-    if (this.input.max) {
-      const max = parseInt(this.input.max);
-      const buttonPlus = this.querySelector(".quantity__button[name='plus']");
-      buttonPlus.classList.toggle('disabled', value >= max);
-    } 
   }
 }
 
@@ -452,7 +414,7 @@ class HeaderDrawer extends MenuDrawer {
   }
 
   openMenuDrawer(summaryElement) {
-    this.header = this.header || document.querySelector('.section-header');
+    this.header = this.header || document.getElementById('shopify-section-header');
     this.borderOffset = this.borderOffset || this.closest('.header-wrapper').classList.contains('header-wrapper--border-bottom') ? 1 : 0;
     document.documentElement.style.setProperty('--header-bottom-position', `${parseInt(this.header.getBoundingClientRect().bottom - this.borderOffset)}px`);
     this.header.classList.add('menu-open');
@@ -596,10 +558,6 @@ class SliderComponent extends HTMLElement {
   }
 
   update() {
-    // Temporarily prevents unneeded updates resulting from variant changes
-    // This should be refactored as part of https://github.com/Shopify/dawn/issues/2057
-    if (!this.slider || !this.nextButton) return;
-
     const previousPage = this.currentPage;
     this.currentPage = Math.round(this.slider.scrollLeft / this.sliderItemOffset) + 1;
 
@@ -803,7 +761,6 @@ class VariantSelects extends HTMLElement {
     this.toggleAddButton(true, '', false);
     this.updatePickupAvailability();
     this.removeErrorMessage();
-    this.updateVariantStatuses();
 
     if (!this.currentVariant) {
       this.toggleAddButton(true, '', true);
@@ -862,28 +819,6 @@ class VariantSelects extends HTMLElement {
     });
   }
 
-  updateVariantStatuses() {
-    const selectedOptionOneVariants = this.variantData.filter(variant => this.querySelector(':checked').value === variant.option1);
-    const inputWrappers = [...this.querySelectorAll('.product-form__input')];
-    inputWrappers.forEach((option, index) => {
-      if (index === 0) return;
-      const optionInputs = [...option.querySelectorAll('input[type="radio"], option')]
-      const previousOptionSelected = inputWrappers[index - 1].querySelector(':checked').value;
-      const availableOptionInputsValue = selectedOptionOneVariants.filter(variant => variant.available && variant[`option${ index }`] === previousOptionSelected).map(variantOption => variantOption[`option${ index + 1 }`]);
-      this.setInputAvailability(optionInputs, availableOptionInputsValue)
-    });
-  }
-
-  setInputAvailability(listOfOptions, listOfAvailableOptions) {
-    listOfOptions.forEach(input => {
-      if (listOfAvailableOptions.includes(input.getAttribute('value'))) {
-        input.innerText = input.getAttribute('value');
-      } else {
-        input.innerText = window.variantStrings.unavailable_with_option.replace('[value]', input.getAttribute('value'));
-      }
-    });
-  }
-
   updatePickupAvailability() {
     const pickUpAvailability = document.querySelector('pickup-availability');
     if (!pickUpAvailability) return;
@@ -905,44 +840,18 @@ class VariantSelects extends HTMLElement {
   }
 
   renderProductInfo() {
-    const requestedVariantId = this.currentVariant.id;
-    const sectionId = this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section;
-
-    fetch(`${this.dataset.url}?variant=${requestedVariantId}&section_id=${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`)
+    fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`)
       .then((response) => response.text())
       .then((responseText) => {
-        // prevent unnecessary ui changes from abandoned selections
-        if (this.currentVariant.id !== requestedVariantId) return;
-
         const html = new DOMParser().parseFromString(responseText, 'text/html')
         const destination = document.getElementById(`price-${this.dataset.section}`);
         const source = html.getElementById(`price-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
-        const skuSource = html.getElementById(`Sku-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
-        const skuDestination = document.getElementById(`Sku-${this.dataset.section}`);
-        const inventorySource = html.getElementById(`Inventory-${this.dataset.originalSection ? this.dataset.originalSection : this.dataset.section}`);
-        const inventoryDestination = document.getElementById(`Inventory-${this.dataset.section}`);
-
         if (source && destination) destination.innerHTML = source.innerHTML;
-        if (inventorySource && inventoryDestination) inventoryDestination.innerHTML = inventorySource.innerHTML;
-        if (skuSource && skuDestination) {
-          skuDestination.innerHTML = skuSource.innerHTML;
-          skuDestination.classList.toggle('visibility-hidden', skuSource.classList.contains('visibility-hidden'));
-        }
 
         const price = document.getElementById(`price-${this.dataset.section}`);
 
         if (price) price.classList.remove('visibility-hidden');
-
-        if (inventoryDestination) inventoryDestination.classList.toggle('visibility-hidden', inventorySource.innerText === '');
-
-        const addButtonUpdated = html.getElementById(`ProductSubmitButton-${sectionId}`);
-        this.toggleAddButton(addButtonUpdated ? addButtonUpdated.hasAttribute('disabled') : true, window.variantStrings.soldOut);
-
-        publish(PUB_SUB_EVENTS.variantChange, {data: {
-          sectionId,
-          html,
-          variant: this.currentVariant
-        }});
+        this.toggleAddButton(!this.currentVariant.available, window.variantStrings.soldOut);
       });
   }
 
@@ -969,14 +878,9 @@ class VariantSelects extends HTMLElement {
     const addButton = button.querySelector('[name="add"]');
     const addButtonText = button.querySelector('[name="add"] > span');
     const price = document.getElementById(`price-${this.dataset.section}`);
-    const inventory = document.getElementById(`Inventory-${this.dataset.section}`);
-    const sku = document.getElementById(`Sku-${this.dataset.section}`);
-
     if (!addButton) return;
     addButtonText.textContent = window.variantStrings.unavailable;
     if (price) price.classList.add('visibility-hidden');
-    if (inventory) inventory.classList.add('visibility-hidden');
-    if (sku) sku.classList.add('visibility-hidden');
   }
 
   getVariantData() {
@@ -990,16 +894,6 @@ customElements.define('variant-selects', VariantSelects);
 class VariantRadios extends VariantSelects {
   constructor() {
     super();
-  }
-
-  setInputAvailability(listOfOptions, listOfAvailableOptions) {
-    listOfOptions.forEach(input => {
-      if (listOfAvailableOptions.includes(input.getAttribute('value'))) {
-        input.classList.remove('disabled');
-      } else {
-        input.classList.add('disabled');
-      }
-    });
   }
 
   updateOptions() {

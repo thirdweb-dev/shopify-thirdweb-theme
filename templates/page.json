@@ -6,9 +6,15 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "06824ebf-5ff2-4b8a-9a43-93f02b33e8ef": {
+      "type": "claim",
+      "settings": {
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "06824ebf-5ff2-4b8a-9a43-93f02b33e8ef"
   ]
 }

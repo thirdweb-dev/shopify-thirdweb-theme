@@ -7,7 +7,7 @@
       "login_form_password_placeholder": "Tu contraseña",
       "login_form_error": "Contraseña incorrecta",
       "login_form_submit": "Ingresar",
-      "admin_link_html": "¿Eres el propietario de la tienda? <a href=\"/admin\" class=\"link underlined-link\">Inicia sesión aquí</a>",
+      "admin_link_html": "¿Eres el propietario de la tienda? <a href=\"\/admin\" class=\"link underlined-link\">Inicia sesión aquí<\/a>",
       "powered_by_shopify_html": "Esta tienda contará con tecnología Shopify {{ shopify }}"
     },
     "social": {
@@ -36,13 +36,11 @@
       "previous": "Pagina anterior"
     },
     "search": {
-      "search": "Búsqueda",
-      "reset": "Borrar término de búsqueda"
+      "search": "Búsqueda"
     },
     "cart": {
       "view": "Ver mi carrito ({{ count }})",
-      "item_added": "Artículo agregado a tu carrito",
-      "view_empty_cart": "Ver mi carrito"
+      "item_added": "Artículo agregado a tu carrito"
     },
     "share": {
       "copy_to_clipboard": "Copiar enlace",
@@ -115,11 +113,7 @@
         "label": "Cantidad",
         "input_label": "Cantidad para {{ product }}",
         "increase": "Aumentar cantidad para {{ product }}",
-        "decrease": "Reducir cantidad para {{ product }}",
-        "minimum_of": "Mínimo de {{ quantity }}",
-        "maximum_of": "Máximo de {{ quantity }}",
-        "multiples_of": "Incrementos de {{ quantity }}",
-        "in_cart_html": "<span class=\"quantity-cart\">{{ quantity }}</span> en el carrito"
+        "decrease": "Reducir cantidad para {{ product }}"
       },
       "price": {
         "from_price_html": "A partir de {{ price }}",
@@ -138,8 +132,8 @@
         "view_store_info": "Ver información de la tienda",
         "check_other_stores": "Verificar disponibilidad en otras tiendas",
         "pick_up_available": "Retiro disponible",
-        "pick_up_available_at_html": "Retiro disponible en <span class=\"color-foreground\">{{ location_name }}</span>",
-        "pick_up_unavailable_at_html": "Retiro no disponible actualmente en <span class=\"color-foreground\">{{ location_name }}</span>",
+        "pick_up_available_at_html": "Retiro disponible en <span class=\"color-foreground\">{{ location_name }}<\/span>",
+        "pick_up_unavailable_at_html": "Retiro no disponible actualmente en <span class=\"color-foreground\">{{ location_name }}<\/span>",
         "unavailable": "No se pudo cargar la disponibilidad de retiro",
         "refresh": "Actualizar"
       },
@@ -155,18 +149,9 @@
       },
       "view_full_details": "Ver todos los detalles",
       "include_taxes": "Impuesto incluido.",
-      "shipping_policy_html": "Los <a href=\"{{ link }}\">gastos de envío</a> se calculan en la pantalla de pago.",
+      "shipping_policy_html": "Los <a href=\"{{ link }}\">gastos de envío<\/a> se calculan en la pantalla de pago.",
       "choose_options": "Seleccionar opciones",
-      "choose_product_options": "Elegir opciones para {{ product_name }}",
-      "value_unavailable": "{{ option_value }}: no disponible",
-      "variant_sold_out_or_unavailable": "Variante agotada o no disponible",
-      "inventory_in_stock": "En existencias",
-      "inventory_in_stock_show_count": "{{ quantity }} en existencias",
-      "inventory_low_stock": "Bajas existencias",
-      "inventory_low_stock_show_count": "Bajas existencias: quedan {{ quantity }}",
-      "inventory_out_of_stock": "Agotado",
-      "inventory_out_of_stock_continue_selling": "En existencias",
-      "sku": "SKU"
+      "choose_product_options": "Elegir opciones para {{ product_name }}"
     },
     "modal": {
       "label": "Galería multimedia"
@@ -221,23 +206,6 @@
         "one": "Se ha encontrado {{ count }} resultado para \"{{ terms }}\"",
         "other": "Se han encontrado {{ count }} resultados para \"{{ terms }}\"",
         "many": "Se han encontrado {{ count }} resultados para \"{{ terms }}\""
-      },
-      "results_pages_with_count": {
-        "one": "{{ count }} página",
-        "other": "{{ count }} páginas",
-        "many": "{{ count }} páginas"
-      },
-      "results_products_with_count": {
-        "one": "{{ count }} producto",
-        "other": "{{ count }} productos",
-        "many": "{{ count }} productos"
-      },
-      "suggestions": "Sugerencias",
-      "pages": "Páginas",
-      "results_suggestions_with_count": {
-        "one": "{{ count }} sugerencia",
-        "other": "{{ count }} sugerencias",
-        "many": "{{ count }} sugerencias"
       }
     },
     "cart": {
@@ -281,9 +249,9 @@
       "empty": "Tu carrito esta vacío",
       "cart_error": "Hubo un error al actualizar tu carrito de compra. Inténtalo de nuevo.",
       "cart_quantity_error_html": "Solo puedes agregar {{ quantity }} de este artículo a tu carrito.",
-      "taxes_and_shipping_policy_at_checkout_html": "Los impuestos y <a href=\"{{ link }}\">gastos de envío</a> se calculan en la pantalla de pago",
+      "taxes_and_shipping_policy_at_checkout_html": "Los impuestos y <a href=\"{{ link }}\">gastos de envío<\/a> se calculan en la pantalla de pago",
       "taxes_included_but_shipping_at_checkout": "Impuesto incluido y los gastos de envío se calculan en la pantalla de pago",
-      "taxes_included_and_shipping_policy_html": "Impuesto incluido. Los <a href=\"{{ link }}\">gastos de envío</a> se calculan en la pantalla de pago.",
+      "taxes_included_and_shipping_policy_html": "Impuesto incluido. Los <a href=\"{{ link }}\">gastos de envío<\/a> se calculan en la pantalla de pago.",
       "taxes_and_shipping_at_checkout": "Los impuestos y gastos de envío se calculan en la pantalla de pago",
       "headings": {
         "product": "Producto",
@@ -295,7 +263,7 @@
       "update": "Actualizar",
       "login": {
         "title": "¿Tienes una cuenta?",
-        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Inicia sesión</a> para finalizar tus compras con mayor rapidez."
+        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Inicia sesión<\/a> para finalizar tus compras con mayor rapidez."
       }
     },
     "footer": {
@@ -316,7 +284,7 @@
     "collection_template": {
       "title": "Colección",
       "empty": "No se encontró ningún producto",
-      "use_fewer_filters_html": "Usa menos filtros o <a class=\"{{ class }}\" href=\"{{ link }}\">elimínalos todos</a>"
+      "use_fewer_filters_html": "Usa menos filtros o <a class=\"{{ class }}\" href=\"{{ link }}\">elimínalos todos<\/a>"
     },
     "video": {
       "load_video": "Cargar video: {{ description }}"
@@ -335,10 +303,10 @@
     }
   },
   "localization": {
-    "country_label": "País/región",
+    "country_label": "País\/región",
     "language_label": "Idioma",
     "update_language": "Actualizar idioma",
-    "update_country": "Actualizar país/región"
+    "update_country": "Actualizar país\/región"
   },
   "customer": {
     "account": {
@@ -367,7 +335,7 @@
       "address1": "Dirección 1",
       "address2": "Dirección 2",
       "city": "Ciudad",
-      "country": "País/región",
+      "country": "País\/región",
       "province": "Provincia",
       "zip": "Código postal",
       "phone": "Teléfono",
@@ -377,7 +345,7 @@
       "cancel": "Cancelar",
       "edit": "Editar",
       "delete": "Eliminar",
-      "delete_confirm": "¿Está seguro/a de que deseas eliminar esta dirección?"
+      "delete_confirm": "¿Está seguro\/a de que deseas eliminar esta dirección?"
     },
     "log_in": "Iniciar sesión",
     "log_out": "Cerrar sesión",
@@ -446,8 +414,7 @@
       "tracking_company": "Empresa de transporte",
       "tracking_number": "Número de seguimiento",
       "subtotal": "Subtotal",
-      "total_duties": "Aranceles",
-      "total_refunded": "Reembolsado"
+      "total_duties": "Aranceles"
     }
   },
   "gift_cards": {

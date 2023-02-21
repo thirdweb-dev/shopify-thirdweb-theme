@@ -51,7 +51,6 @@ if (!customElements.get('product-form')) {
             return;
           }
 
-          if (!this.error) publish(PUB_SUB_EVENTS.cartUpdate, {source: 'product-form'});
           this.error = false;
           const quickAddModal = this.closest('quick-add-modal');
           if (quickAddModal) {

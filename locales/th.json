@@ -7,7 +7,7 @@
       "login_form_password_placeholder": "รหัสผ่านของคุณ",
       "login_form_error": "รหัสผ่านผิดพลาด!",
       "login_form_submit": "ป้อน",
-      "admin_link_html": "คุณเป็นเจ้าของร้านใช่ไหม <a href=\"/admin\" class=\"link underlined-link\">เข้าสู่ระบบที่นี่</a>",
+      "admin_link_html": "คุณเป็นเจ้าของร้านใช่ไหม <a href=\"\/admin\" class=\"link underlined-link\">เข้าสู่ระบบที่นี่<\/a>",
       "powered_by_shopify_html": "ร้านค้านี้จะได้รับการสนับสนุนจาก {{ shopify }}"
     },
     "social": {
@@ -36,13 +36,11 @@
       "previous": "หน้าก่อนหน้านี้"
     },
     "search": {
-      "search": "ค้นหา",
-      "reset": "ล้างคำที่ใช้ค้นหา"
+      "search": "ค้นหา"
     },
     "cart": {
       "view": "ดูรถตะกร้าสินค้าของฉัน ({{ count }})",
-      "item_added": "รายการที่เพิ่มในตะกร้าสินค้าของคุณ",
-      "view_empty_cart": "ดูตะกร้าสินค้าของฉัน"
+      "item_added": "รายการที่เพิ่มในตะกร้าสินค้าของคุณ"
     },
     "share": {
       "copy_to_clipboard": "คัดลอกลิงก์",
@@ -108,22 +106,18 @@
     "product": {
       "add_to_cart": "เพิ่มลงในตะกร้าสินค้า",
       "description": "คำอธิบาย",
-      "on_sale": "ลดราคา",
+      "on_sale": "การลดราคา",
       "product_variants": "ตัวเลือกสินค้า",
       "quantity": {
         "label": "ปริมาณ",
         "input_label": "ปริมาณสำหรับ {{ product }}",
         "increase": "เพิ่มปริมาณสำหรับ {{ product }}",
-        "decrease": "ลดปริมาณสำหรับ {{ product }}",
-        "minimum_of": "จำนวนต่ำสุดของ {{ quantity }}",
-        "maximum_of": "จำนวนสูงสุดของ {{ quantity }}",
-        "multiples_of": "เพิ่มขึ้นได้ทีละ {{ quantity }}",
-        "in_cart_html": "จำนวน <span class=\"quantity-cart\">{{ quantity }}</span> ในตะกร้าสินค้า"
+        "decrease": "ลดปริมาณสำหรับ {{ product }}"
       },
       "price": {
         "from_price_html": "จาก {{ price }}",
         "regular_price": "ราคาปกติ",
-        "sale_price": "ราคาโปรโมชัน",
+        "sale_price": "ราคาช่วงลดราคา",
         "unit_price": "ราคาต่อหน่วย"
       },
       "share": "แชร์สินค้ารายการนี้",
@@ -132,13 +126,13 @@
       "vendor": "ผู้ขาย",
       "video_exit_message": "{{ title }} เปิดวิดีโอแบบเต็มหน้าจอในหน้าต่างเดียวกัน",
       "xr_button": "ดูในพื้นที่ของคุณ",
-      "xr_button_label": "ดูในพื้นที่ของคุณ โหลดรายการในหน้าต่างความเป็นจริงเสริม",
+      "xr_button_label": "ดูในพื้นที่ของคุณ โหลดรายการในหน้าต่างการสร้างวัตถุเสมือน",
       "pickup_availability": {
         "view_store_info": "ดูข้อมูลร้านค้า",
         "check_other_stores": "ตรวจสอบความพร้อมที่ร้านค้าอื่นๆ",
         "pick_up_available": "การรับสินค้าด้วยตนเองพร้อมให้บริการ",
-        "pick_up_available_at_html": "รับสินค้าด้วยตนเองได้ที่ <span class=\"color-foreground\">{{ location_name }}</span>",
-        "pick_up_unavailable_at_html": "การรับสินค้าด้วยตนเองที่ <span class=\"color-foreground\">{{ location_name }}</span> ยังไม่พร้อมให้บริการในขณะนี้",
+        "pick_up_available_at_html": "รับสินค้าด้วยตนเองได้ที่ <span class=\"color-foreground\">{{ location_name }}<\/span>",
+        "pick_up_unavailable_at_html": "การรับสินค้าด้วยตนเองที่ <span class=\"color-foreground\">{{ location_name }}<\/span> ยังไม่พร้อมให้บริการในขณะนี้",
         "unavailable": "ไม่สามารถโหลดความพร้อมในการรับสินค้าด้วยตนเองได้",
         "refresh": "รีเฟรช"
       },
@@ -154,18 +148,9 @@
       },
       "view_full_details": "ดูรายละเอียดทั้งหมด",
       "include_taxes": "รวมภาษี",
-      "shipping_policy_html": "<a href=\"{{ link }}\">ค่าจัดส่ง</a>ที่คำนวณในขั้นตอนการชำระเงิน",
+      "shipping_policy_html": "<a href=\"{{ link }}\">ค่าจัดส่ง<\/a>ที่คำนวณในขั้นตอนการชำระเงิน",
       "choose_options": "เลือกตัวเลือก",
-      "choose_product_options": "เลือกตัวเลือกสำหรับ {{ product_name }}",
-      "value_unavailable": "{{ option_value }} ไม่พร้อมจำหน่าย",
-      "variant_sold_out_or_unavailable": "ตัวเลือกสินค้าขายหมดแล้วหรือไม่พร้อมจำหน่าย",
-      "inventory_in_stock": "มีในสต็อก",
-      "inventory_in_stock_show_count": "มี {{ quantity }} รายการในสต็อกสินค้า",
-      "inventory_low_stock": "สต็อกสินค้าเหลือน้อย",
-      "inventory_low_stock_show_count": "สต็อกสินค้าเหลือน้อย: เหลือ {{ quantity }} ชิ้น",
-      "inventory_out_of_stock": "หมดสต็อก",
-      "sku": "SKU",
-      "inventory_out_of_stock_continue_selling": "มีในสต็อก"
+      "choose_product_options": "เลือกตัวเลือกสำหรับ {{ product_name }}"
     },
     "modal": {
       "label": "แกลเลอรีสื่อ"
@@ -215,21 +200,7 @@
       "results_with_count_and_term": {
         "one": "พบผลลัพธ์ {{ count }} รายการสำหรับ “{{ terms }}”",
         "other": "พบผลลัพธ์ {{ count }} รายการสำหรับ “{{ terms }}”"
-      },
-      "results_pages_with_count": {
-        "one": "{{ count }} หน้า",
-        "other": "{{ count }} หน้า"
-      },
-      "results_suggestions_with_count": {
-        "one": "คำแนะนำ {{ count }} รายการ",
-        "other": "{{ count }} คำแนะนำ"
-      },
-      "results_products_with_count": {
-        "one": "สินค้า {{ count }} รายการ",
-        "other": "สินค้า {{ count }} รายการ"
-      },
-      "suggestions": "คำแนะนำ",
-      "pages": "หน้า"
+      }
     },
     "cart": {
       "cart": "ตะกร้าสินค้า"
@@ -271,9 +242,9 @@
       "empty": "ตะกร้าสินค้าของคุณว่างอยู่",
       "cart_error": "เกิดข้อผิดพลาดระหว่างการอัปเดตตะกร้าสินค้าของคุณ โปรดลองอีกครั้ง",
       "cart_quantity_error_html": "คุณสามารถเพิ่มรายการนี้ {{ quantity }} รายการลงในตะกร้าสินค้าของคุณเท่านั้น",
-      "taxes_and_shipping_policy_at_checkout_html": "ระบบจะคำนวณภาษีและ<a href=\"{{ link }}\">ค่าจัดส่ง</a>ในขั้นตอนการชำระเงิน",
+      "taxes_and_shipping_policy_at_checkout_html": "ระบบจะคำนวณภาษีและ<a href=\"{{ link }}\">ค่าจัดส่ง<\/a>ในขั้นตอนการชำระเงิน",
       "taxes_included_but_shipping_at_checkout": "ระบบจะรวมภาษีและคำนวณค่าจัดส่งในขั้นตอนการชำระเงิน",
-      "taxes_included_and_shipping_policy_html": "รวมภาษีแล้ว <a href=\"{{ link }}\">ค่าจัดส่ง</a>ที่คิดคำนวณในระหว่างขั้นตอนการชำระเงิน",
+      "taxes_included_and_shipping_policy_html": "รวมภาษีแล้ว <a href=\"{{ link }}\">ค่าจัดส่ง<\/a>ที่คิดคำนวณในระหว่างขั้นตอนการชำระเงิน",
       "taxes_and_shipping_at_checkout": "ระบบจะคำนวณภาษีและค่าจัดส่งในขั้นตอนการชำระเงิน",
       "headings": {
         "product": "สินค้า",
@@ -285,7 +256,7 @@
       "update": "อัปเดต",
       "login": {
         "title": "มีบัญชีผู้ใช้อยู่แล้วใช่หรือไม่",
-        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">เข้าสู่ระบบ</a>เพื่อชำระเงินให้รวดเร็วยิ่งขึ้น"
+        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">เข้าสู่ระบบ<\/a>เพื่อชำระเงินให้รวดเร็วยิ่งขึ้น"
       }
     },
     "footer": {
@@ -306,7 +277,7 @@
     "collection_template": {
       "title": "คอลเลกชัน",
       "empty": "ไม่พบสินค้า",
-      "use_fewer_filters_html": "ใช้ตัวกรองให้น้อยลง หรือ<a class=\"{{ class }}\" href=\"{{ link }}\">ลบทั้งหมด</a>"
+      "use_fewer_filters_html": "ใช้ตัวกรองให้น้อยลง หรือ<a class=\"{{ class }}\" href=\"{{ link }}\">ลบทั้งหมด<\/a>"
     },
     "video": {
       "load_video": "โหลดวิดีโอ: {{ description }}"
@@ -325,10 +296,10 @@
     }
   },
   "localization": {
-    "country_label": "ประเทศ/ภูมิภาค",
+    "country_label": "ประเทศ\/ภูมิภาค",
     "language_label": "ภาษา",
     "update_language": "อัปเดตภาษา",
-    "update_country": "อัปเดตประเทศ/ภูมิภาค"
+    "update_country": "อัปเดตประเทศ\/ภูมิภาค"
   },
   "customer": {
     "account": {
@@ -357,9 +328,9 @@
       "address1": "ที่อยู่ 1",
       "address2": "ที่อยู่ 2",
       "city": "เมือง",
-      "country": "ประเทศ/ภูมิภาค",
+      "country": "ประเทศ\/ภูมิภาค",
       "province": "จังหวัด",
-      "zip": "รหัสไปรษณีย์/ZIP",
+      "zip": "รหัสไปรษณีย์\/ZIP",
       "phone": "โทรศัพท์",
       "set_default": "ตั้งเป็นที่อยู่เริ่มต้น",
       "add": "เพิ่มที่อยู่",
@@ -436,8 +407,7 @@
       "tracking_company": "ผู้ให้บริการขนส่ง",
       "tracking_number": "หมายเลขติดตามพัสดุ",
       "subtotal": "ยอดรวม",
-      "total_duties": "อากร",
-      "total_refunded": "คืนเงินแล้ว"
+      "total_duties": "อากร"
     }
   },
   "gift_cards": {

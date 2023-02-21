@@ -29,8 +29,6 @@
 
     {% render 'meta-tags' %}
 
-    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     {{ content_for_header }}
 
@@ -253,21 +251,23 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% sections 'header-group' %}
-
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
-      <script
-        data-desired-chain-id="137"
-        data-title="Thirdweb clubIRL Membership"
-        data-description="You must be part of clubIRL to purchase. Connect your wallet to prove ownership."
-        data-image="https://i.seadn.io/gae/u8u0HwiARkrVmiQ-AzESZCpYANrY5gDP-5CrYvz6yvdleAvN1oRBJP5VrXnMLPuXLZef4UQeTcO9ulYMrJSECJnp1ggRjW--8lVE?w=500&auto=format"
-        data-contract-address="0xD94b9a574B8B3c926906f11b99a760188D98f0F4"
-        src="https://unpkg.com/lazer-thirdweb-shopify-token-gating@1.0.2/storefront.js"
-      ></script>
+      {% comment %}
+        <script
+          data-desired-chain-id="137"
+          data-title="Thirdweb Shopify Membership"
+          data-description="You must own the membership NFT. Connect your wallet to prove ownership. If you don't have one go to the claim page to get one for free!"
+          data-image="https://gateway.ipfscdn.io/ipfs/QmRhZXXZ7gPUu5FijF8E1d1obLjfEs593mPcqRaKmpiGex/0.png"
+          data-contract-address="0x7C8E4993051a1e231E04Ea5BA3DC11bD8D686fd8"
+          src="https://unpkg.com/lazer-thirdweb-shopify-token-gating@1.0.2/storefront.js"
+        ></script>
+      {% endcomment %}
     </main>
 
-    {% sections 'footer-group' %}
+    {% section 'footer' %}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
@@ -293,7 +293,6 @@
         addToCart: `{{ 'products.product.add_to_cart' | t }}`,
         soldOut: `{{ 'products.product.sold_out' | t }}`,
         unavailable: `{{ 'products.product.unavailable' | t }}`,
-        unavailable_with_option: `{{ 'products.product.value_unavailable' | t: option_value: '[value]' }}`,
       };
 
       window.accessibilityStrings = {
@@ -307,9 +306,29 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-    <script
-      src="{{ 'vendors-node_modules_thirdweb-dev_sdk_dist_edition-drop-d3e76639_esm_js.bundle.js' | asset_url }}"
-    ></script>
-    <script src="{{ 'nft.bundle.js' | asset_url }}" defer="defer"></script>
+    <!-- PF EDT START -->
+    <script type="text/javascript">
+      {%- if content_for_header contains 'shopify-product-customizer' -%}
+          {%- if product -%}
+              {%- if product.first_available_variant -%}
+                  var pfProductId = {{ product.metafields.printful.is_synced | json }};
+                  var pfEdt = {{ shop.metafields.printful.is_edt_enabled | json }};
+                  var pfEdtTextColor = {{ shop.metafields.printful.edt_text_color | json }};
+                  var pfEdtBackgroundColor = {{ shop.metafields.printful.edt_background_color | json }};
+                  var pfEdtBorderColor = {{ shop.metafields.printful.edt_border_color | json }};
+                  var pfEdtUseDefaultStyling = {{ shop.metafields.printful.edt_default_style | json }};
+                  var pfEdtTextAlignment = {{ shop.metafields.printful.edt_text_alignment | json }};
+                  var pfEdtFlags = {
+                      US: "{{ 'US.svg' | asset_url }}",CA: "{{ 'CA.svg' | asset_url }}",ES: "{{ 'ES.svg' | asset_url }}",LV: "{{ 'LV.svg' | asset_url }}",GB: "{{ 'GB.svg' | asset_url }}",DE: "{{ 'DE.svg' | asset_url }}",FR: "{{ 'FR.svg' | asset_url }}",AU: "{{ 'AU.svg' | asset_url }}",JP: "{{ 'JP.svg' | asset_url }}",NZ: "{{ 'NZ.svg' | asset_url }}",IT: "{{ 'IT.svg' | asset_url }}",BR: "{{ 'BR.svg' | asset_url }}",KR: "{{ 'KR.svg' | asset_url }}",NL: "{{ 'NL.svg' | asset_url }}",GB: "{{ 'GB.svg' | asset_url }}",
+                  };
+              {%- else -%}
+                  var pfEdt = 0;
+              {%- endif -%}
+          {%- endif -%}
+      {%- endif -%}
+    </script>
+    <!-- PF EDT END -->
+    <script src="{{ "nft.bundle.js" | asset_url }}"></script>
+    <script src="{{ "thirdwebtokengate.bundle.js" | asset_url }}"></script>
   </body>
 </html>
