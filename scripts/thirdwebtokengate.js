@@ -3,11 +3,9 @@ import {
   Button,
   ChakraProvider,
   Flex,
-  Heading,
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalOverlay,
   Spinner,
   Text,
@@ -16,7 +14,6 @@ import {
 import {
   ChainId,
   ConnectWallet,
-  ThirdwebNftMedia,
   ThirdwebProvider,
   useAddress,
   useContract,
@@ -69,73 +66,67 @@ const TokenGate = () => {
       }}
       id="modal-container"
     >
-      <Modal isOpen={!owned} onClose={onClose} isCentered size="2xl">
+      <Modal isOpen={!owned} onClose={onClose} isCentered size="3xl">
         <ModalOverlay
           bg="blackAlpha.300"
           backdropFilter="blur(10px) hue-rotate(90deg)"
           display="block !important"
         />
-        <ModalContent>
-          {nft && (
-            <Box p={4} bg="blackAlpha.800" roundedTop="lg">
-              <ThirdwebNftMedia
-                width="100%"
-                height="auto"
-                metadata={nft.metadata}
-                style={{
-                  borderRadius: "10px",
-                }}
-              />
-            </Box>
-          )}
-          <ModalBody
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-          >
-            {loading ? (
-              <Spinner />
-            ) : !address ? (
-              <>
-                <Text my={4}>
-                  Please connect your wallet to check if you own a membership.
-                </Text>
-                <ConnectWallet />
-              </>
-            ) : (
-              !owned && (
+        <ModalContent
+          bg="#131313"
+          minW="xl"
+          rounded="3xl"
+          outline="0.5px solid rgba(255, 255, 255, 0.7)"
+        >
+          <ModalBody>
+            <Box p={8} minH="100%" minW="xl">
+              {loading ? (
+                <Spinner />
+              ) : !address ? (
                 <Flex
                   my={4}
-                  gap={2}
+                  gap={8}
                   flexDirection="column"
                   alignItems="center"
                   justifyContent="center"
+                  color="white"
                 >
-                  <Heading>You do not own a membership.</Heading>
-                  <Text>
-                    Please connect to a wallet that owns this nft, or go and
-                    claim one
-                  </Text>
+                  <Text>STOP! We need to check if you're a member.</Text>
                   <ConnectWallet />
                 </Flex>
-              )
-            )}
+              ) : (
+                !owned && (
+                  <Flex
+                    my={4}
+                    gap={8}
+                    flexDirection="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    color="white"
+                  >
+                    <Text>To access this product, you'll need an NFT.</Text>
+                    <ConnectWallet />
+                    <Button
+                      variant="solid"
+                      w="200px"
+                      h="50px"
+                      bg="white"
+                      color="black"
+                      fontSize="2xl"
+                      // fontWeight="bold"
+                      rounded="2xl"
+                      onClick={() => {
+                        window.location.href =
+                          "https://thirdweb.myshopify.com/pages/claim";
+                      }}
+                    >
+                      Go Claim NFT
+                    </Button>
+                  </Flex>
+                )
+              )}
+            </Box>
           </ModalBody>
-
-          <ModalFooter>
-            <Button
-              variant="solid"
-              colorScheme="purple"
-              size="lg"
-              onClick={() => {
-                window.location.href =
-                  "https://thirdweb.myshopify.com/pages/claim";
-              }}
-            >
-              Go claim one
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </div>

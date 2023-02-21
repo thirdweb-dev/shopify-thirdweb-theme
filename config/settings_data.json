@@ -5,15 +5,15 @@
     "gradient_accent_1": "",
     "colors_accent_2": "#334fb4",
     "gradient_accent_2": "",
-    "colors_text": "#121212",
-    "colors_outline_button_labels": "#121212",
-    "colors_background_1": "#ffffff",
+    "colors_text": "#ffffff",
+    "colors_outline_button_labels": "#ffffff",
+    "colors_background_1": "#121212",
     "gradient_background_1": "",
-    "colors_background_2": "#f3f3f3",
+    "colors_background_2": "#121212",
     "gradient_background_2": "",
-    "type_header_font": "assistant_n4",
+    "type_header_font": "beefcakes_n4",
     "heading_scale": 100,
-    "type_body_font": "assistant_n4",
+    "type_body_font": "inter_n4",
     "body_scale": 100,
     "page_width": 1200,
     "spacing_sections": 0,
@@ -40,23 +40,23 @@
     "inputs_shadow_horizontal_offset": 0,
     "inputs_shadow_vertical_offset": 4,
     "inputs_shadow_blur": 5,
-    "card_style": "standard",
+    "card_style": "card",
     "card_image_padding": 0,
-    "card_text_alignment": "left",
-    "card_color_scheme": "background-2",
+    "card_text_alignment": "center",
+    "card_color_scheme": "background-1",
     "card_border_thickness": 0,
-    "card_border_opacity": 10,
+    "card_border_opacity": 0,
     "card_corner_radius": 0,
     "card_shadow_opacity": 0,
     "card_shadow_horizontal_offset": 0,
     "card_shadow_vertical_offset": 4,
-    "card_shadow_blur": 5,
+    "card_shadow_blur": 0,
     "collection_card_style": "standard",
     "collection_card_image_padding": 0,
-    "collection_card_text_alignment": "left",
-    "collection_card_color_scheme": "background-2",
+    "collection_card_text_alignment": "center",
+    "collection_card_color_scheme": "background-1",
     "collection_card_border_thickness": 0,
-    "collection_card_border_opacity": 10,
+    "collection_card_border_opacity": 0,
     "collection_card_corner_radius": 0,
     "collection_card_shadow_opacity": 0,
     "collection_card_shadow_horizontal_offset": 0,
@@ -121,6 +121,12 @@
     "cart_type": "notification",
     "show_vendor": false,
     "show_cart_note": false,
+    "checkout_header_image": "shopify:\/\/shop_images\/Frame_427319146_56b4003d-4079-4b6b-905e-62b92e4a5571.png",
+    "checkout_logo_image": "shopify:\/\/shop_images\/Frame_427319145.png",
+    "checkout_logo_size": "small",
+    "checkout_body_background_color": "#121212",
+    "checkout_input_background_color_mode": "transparent",
+    "checkout_sidebar_background_color": "#121212",
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
@@ -128,7 +134,7 @@
           "announcement-bar-0": {
             "type": "announcement",
             "settings": {
-              "text": "Welcome to our super secret merch store!",
+              "text": "Welcome to the drop.",
               "text_alignment": "center",
               "color_scheme": "background-1",
               "link": ""
@@ -145,8 +151,8 @@
         "type": "header",
         "settings": {
           "color_scheme": "background-1",
-          "logo": "{{ shop.brand.logo }}",
-          "logo_width": 140,
+          "logo": "shopify:\/\/shop_images\/Frame_427319148.png",
+          "logo_width": 230,
           "logo_position": "middle-left",
           "menu": "main-menu",
           "menu_type_desktop": "dropdown",
@@ -179,8 +185,8 @@
           "footer-2": {
             "type": "text",
             "settings": {
-              "heading": "Our mission",
-              "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+              "heading": "What is thirdweb?",
+              "subtext": "<p>We make it really easy to build web3 apps. <\/p><p><a href=\"http:\/\/www.thirdweb.com\" target=\"_blank\" title=\"http:\/\/www.thirdweb.com\">Check us out<\/a><\/p>"
             }
           }
         },
@@ -189,6 +195,9 @@
           "footer-1",
           "footer-2"
         ],
+        "custom_css": [
+          "footer.footer.color-accent-1.gradient.section-footer-padding {margin-top: 0 !important;}"
+        ],
         "settings": {
           "color_scheme": "background-1",
           "newsletter_enable": true,
@@ -196,7 +205,7 @@
           "show_social": true,
           "enable_country_selector": false,
           "enable_language_selector": false,
-          "payment_enable": true,
+          "payment_enable": false,
           "margin_top": 48,
           "padding_top": 36,
           "padding_bottom": 36

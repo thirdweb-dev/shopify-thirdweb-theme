@@ -1,20 +1,45 @@
 {
   "sections": {
+    "0273fac1-d801-4b9e-8ba3-885a189af9ae": {
+      "type": "rich-text",
+      "blocks": {
+        "template--16200447590563__0273fac1-d801-4b9e-8ba3-885a189af9ae-167696178641874003-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p><strong>Claim an exclusive thirdweb NFT<\/strong><\/p>",
+            "heading_size": "h2"
+          }
+        }
+      },
+      "block_order": [
+        "template--16200447590563__0273fac1-d801-4b9e-8ba3-885a189af9ae-167696178641874003-0"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
       }
     },
-    "06824ebf-5ff2-4b8a-9a43-93f02b33e8ef": {
-      "type": "claim",
+    "1c0d72e1-ca99-4a4a-9604-d1bb9b22215d": {
+      "type": "nft",
       "settings": {
       }
     }
   },
   "order": [
+    "0273fac1-d801-4b9e-8ba3-885a189af9ae",
     "main",
-    "06824ebf-5ff2-4b8a-9a43-93f02b33e8ef"
+    "1c0d72e1-ca99-4a4a-9604-d1bb9b22215d"
   ]
 }

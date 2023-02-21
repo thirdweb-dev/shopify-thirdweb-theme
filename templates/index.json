@@ -58,7 +58,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "<p>Finally, thirdweb merch for our most loyal users!<\/p>",
+            "heading": "<p><strong>Loyal users.<\/strong><\/p>",
+            "heading_size": "h2"
+          }
+        },
+        "1fe91d3d-730e-4a85-8004-6a6d47503d5a": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p><strong>This ones for you.<\/strong><\/p>",
             "heading_size": "h2"
           }
         },
@@ -72,6 +79,7 @@
       },
       "block_order": [
         "heading",
+        "1fe91d3d-730e-4a85-8004-6a6d47503d5a",
         "text"
       ],
       "settings": {
@@ -85,8 +93,11 @@
     },
     "featured_collection": {
       "type": "featured-collection",
+      "custom_css": [
+        ".product-single__media-flex img.mfp-image {background-color: transparent;}"
+      ],
       "settings": {
-        "title": "Featured products",
+        "title": "",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
@@ -99,15 +110,15 @@
         "view_all_style": "solid",
         "enable_desktop_slider": false,
         "color_scheme": "background-1",
-        "image_ratio": "adapt",
+        "image_ratio": "square",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "enable_quick_add": false,
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 28,
-        "padding_bottom": 36
+        "padding_top": 24,
+        "padding_bottom": 52
       }
     },
     "collage": {
