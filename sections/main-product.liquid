@@ -24,6 +24,12 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    .line-item-property__field {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
@@ -412,9 +418,9 @@
                   </button>
                 </quantity-input>
             <p class="line-item-property__field">
-  <label for="walletAddress">Wallet Address:</label>
-  <input id="walletAddress" type="text" name="properties[Wallet Address]" form="product-form-{{ section.id }}">
-</p>
+              <label for="walletAddress">Wallet Address:</label>
+              <input id="walletAddress" type="text" name="properties[Wallet Address]" form="product-form-{{ section.id }}">
+            </p>
               </div>
             {%- when 'popup' -%}
               <modal-opener

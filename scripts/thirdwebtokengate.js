@@ -17,7 +17,6 @@ import {
   ThirdwebProvider,
   useAddress,
   useContract,
-  useNFT,
 } from "@thirdweb-dev/react";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
@@ -33,7 +32,6 @@ const TokenGate = () => {
   const address = useAddress();
   const [owned, setOwned] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { data: nft } = useNFT(contract, 0);
 
   useEffect(() => {
     if (address && contract && address) {
@@ -135,7 +133,13 @@ const TokenGate = () => {
 
 const Wrapper = () => {
   return (
-    <ChakraProvider>
+    <ChakraProvider
+      colorModeManager={{
+        type: "localStorage",
+        get: () => "dark",
+        set: () => {},
+      }}
+    >
       <ThirdwebProvider activeChain={ChainId.Mumbai}>
         <TokenGate />
       </ThirdwebProvider>
