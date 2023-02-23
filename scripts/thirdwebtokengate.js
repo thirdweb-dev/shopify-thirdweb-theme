@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   ChakraProvider,
   Flex,
@@ -76,8 +75,23 @@ const TokenGate = () => {
           rounded="3xl"
           outline="0.5px solid rgba(255, 255, 255, 0.7)"
         >
-          <ModalBody>
-            <Box p={8} minH="100%" minW="xl">
+          <ModalBody
+            minH="250px"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Flex
+              p={8}
+              h="full"
+              minW="xl"
+              justifyContent="center"
+              alignItems="center"
+              flexDirection="column"
+              mx="auto"
+              my="auto"
+            >
               {loading ? (
                 <Spinner />
               ) : !address ? (
@@ -123,7 +137,7 @@ const TokenGate = () => {
                   </Flex>
                 )
               )}
-            </Box>
+            </Flex>
           </ModalBody>
         </ModalContent>
       </Modal>
