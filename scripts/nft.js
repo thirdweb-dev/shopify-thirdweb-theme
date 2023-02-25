@@ -17,7 +17,7 @@ const elements = document.querySelectorAll(".nft");
 const RenderNFT = () => {
   // Get your NFT Collection using it's contract address
   const { contract } = useContract(
-    "0x7C8E4993051a1e231E04Ea5BA3DC11bD8D686fd8"
+    "0xFBF12b183f201Ca48F8eC6DA39F00Ce25d3BD2ef"
   );
   const address = useAddress();
   const { mutateAsync } = useClaimNFT(contract);
