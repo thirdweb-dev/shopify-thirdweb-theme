@@ -125,7 +125,6 @@ const TokenGate = () => {
                       bg="white"
                       color="black"
                       fontSize="2xl"
-                      // fontWeight="bold"
                       rounded="2xl"
                       onClick={() => {
                         window.location.href =

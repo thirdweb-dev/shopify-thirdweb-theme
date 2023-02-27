@@ -7,6 +7,8 @@ import {
   useAddress,
   useClaimNFT,
   useContract,
+  useNetwork,
+  useNetworkMismatch,
   useNFT,
 } from "@thirdweb-dev/react";
 import React, { useEffect, useState } from "react";
@@ -14,8 +16,7 @@ import { createRoot } from "react-dom/client";
 
 const elements = document.querySelectorAll(".nft");
 
-const RenderNFT = () => {
-  // Get your NFT Collection using it's contract address
+const RenderNFT = ({ desiredChain }) => {
   const { contract } = useContract(
     "0xFBF12b183f201Ca48F8eC6DA39F00Ce25d3BD2ef"
   );
@@ -23,6 +24,8 @@ const RenderNFT = () => {
   const { mutateAsync } = useClaimNFT(contract);
   const [owned, setOwned] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [, switchNetwork] = useNetwork();
+  const isMismatched = useNetworkMismatch();
 
   useEffect(() => {
     if (address && contract) {
@@ -48,6 +51,18 @@ const RenderNFT = () => {
     }
   };
 
+  const handleClaim = async () => {
+    if (isMismatched) {
+      try {
+        await switchNetwork(desiredChain);
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      claimNFT();
+    }
+  };
+
   // Load (and cache) the metadata for the NFT with token ID
   const { data: nft, isLoading } = useNFT(contract, 0);
   return !isLoading && nft ? (
@@ -57,7 +72,7 @@ const RenderNFT = () => {
       </Box>
       <ConnectWallet />
       <button
-        onClick={claimNFT}
+        onClick={handleClaim}
         style={{
           background: "black",
           color: "white",
@@ -67,10 +82,12 @@ const RenderNFT = () => {
           marginTop: "1rem",
           cursor: "pointer",
         }}
-        disabled={!address || owned}
+        disabled={!address || (!isMismatched && owned)}
       >
         {!address
           ? "Connect Wallet"
+          : isMismatched
+          ? "Switch Network"
           : owned
           ? "Claimed"
           : loading
@@ -84,8 +101,9 @@ const RenderNFT = () => {
 };
 
 const MyFirstWeb3Island = () => {
+  const desiredChain = ChainId.Mumbai;
   return (
-    <ThirdwebProvider activeChain={ChainId.Mumbai}>
+    <ThirdwebProvider activeChain={desiredChain}>
       <div
         style={{
           display: "flex",
@@ -95,7 +113,7 @@ const MyFirstWeb3Island = () => {
           alignItems: "center",
         }}
       >
-        <RenderNFT />
+        <RenderNFT desiredChain={desiredChain} />
       </div>
     </ThirdwebProvider>
   );
