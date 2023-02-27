@@ -18,7 +18,7 @@ const elements = document.querySelectorAll(".nft");
 
 const RenderNFT = ({ desiredChain }) => {
   const { contract } = useContract(
-    "0xFBF12b183f201Ca48F8eC6DA39F00Ce25d3BD2ef"
+    "0x72B2D0c6Eab55028463037a5Bb22A58810105355"
   );
   const address = useAddress();
   const { mutateAsync } = useClaimNFT(contract);
@@ -101,7 +101,7 @@ const RenderNFT = ({ desiredChain }) => {
 };
 
 const MyFirstWeb3Island = () => {
-  const desiredChain = ChainId.Mumbai;
+  const desiredChain = ChainId.Polygon;
   return (
     <ThirdwebProvider activeChain={desiredChain}>
       <div

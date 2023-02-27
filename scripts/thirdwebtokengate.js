@@ -26,7 +26,7 @@ const TokenGate = () => {
   const { onClose } = useDisclosure();
 
   const { contract } = useContract(
-    "0xFBF12b183f201Ca48F8eC6DA39F00Ce25d3BD2ef"
+    "0x72B2D0c6Eab55028463037a5Bb22A58810105355"
   );
   const address = useAddress();
   const [owned, setOwned] = useState(false);
@@ -153,7 +153,7 @@ const Wrapper = () => {
         set: () => {},
       }}
     >
-      <ThirdwebProvider activeChain={ChainId.Mumbai}>
+      <ThirdwebProvider activeChain={ChainId.Polygon}>
         <TokenGate />
       </ThirdwebProvider>
     </ChakraProvider>
