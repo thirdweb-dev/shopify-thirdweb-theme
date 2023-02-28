@@ -210,7 +210,7 @@ const TokenGate = () => {
                 <small>
                   Check out our guides{" "}
                   <a
-                    href="https://blog.thirdweb.com/tag/shopify/"
+                    href="https://blog.thirdweb.com/tag/shopify?utm_source=merchstore&utm_medium=token_gate&utm_campaign=shopify_merch_store"
                     target="_blank"
                     rel="noreferrer"
                     style={{
