@@ -116,8 +116,8 @@ const TokenGate = () => {
                     color="white"
                   >
                     <Text>
-                      To access this product, you'll need the thirdweb Builders
-                      Pass NFT.
+                      To access this product, you'll need the thirdweb DRIP
+                      Builders Pass NFT.
                     </Text>
                     <ConnectWallet />
                     <Button
