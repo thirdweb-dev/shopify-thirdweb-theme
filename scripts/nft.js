@@ -1,6 +1,5 @@
 import { Box, Spinner } from "@chakra-ui/react";
 import {
-  ChainId,
   ConnectWallet,
   ThirdwebNftMedia,
   ThirdwebProvider,
@@ -13,11 +12,11 @@ import {
 } from "@thirdweb-dev/react";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { contractAddress } from "./constants";
+import { contractAddress, desiredChain } from "./constants";
 
 const elements = document.querySelectorAll(".nft");
 
-const RenderNFT = ({ desiredChain }) => {
+const RenderNFT = () => {
   const { contract } = useContract(contractAddress);
   const address = useAddress();
   const { mutateAsync } = useClaimNFT(contract);
@@ -102,7 +101,6 @@ const RenderNFT = ({ desiredChain }) => {
 };
 
 const MyFirstWeb3Island = () => {
-  const desiredChain = ChainId.Polygon;
   return (
     <ThirdwebProvider activeChain={desiredChain}>
       <div
@@ -114,7 +112,7 @@ const MyFirstWeb3Island = () => {
           alignItems: "center",
         }}
       >
-        <RenderNFT desiredChain={desiredChain} />
+        <RenderNFT />
       </div>
     </ThirdwebProvider>
   );

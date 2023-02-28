@@ -11,7 +11,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import {
-  ChainId,
   ConnectWallet,
   ThirdwebProvider,
   useAddress,
@@ -19,7 +18,7 @@ import {
 } from "@thirdweb-dev/react";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { contractAddress } from "./constants";
+import { contractAddress, desiredChain } from "./constants";
 
 const elements = document.querySelectorAll(".thirdwebtokengate");
 
@@ -177,7 +176,7 @@ const Wrapper = () => {
         set: () => {},
       }}
     >
-      <ThirdwebProvider activeChain={ChainId.Polygon}>
+      <ThirdwebProvider activeChain={desiredChain}>
         <TokenGate />
       </ThirdwebProvider>
     </ChakraProvider>
