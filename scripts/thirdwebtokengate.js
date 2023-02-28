@@ -116,12 +116,8 @@ const TokenGate = () => {
                     color="white"
                   >
                     <Text>
-                      To access this product, you'll need our thirdweb Builders
+                      To access this product, you'll need the thirdweb Builders
                       Pass NFT.
-                    </Text>
-                    <Text>
-                      Please switch to a wallet that owns this NFT or claim one
-                      below.
                     </Text>
                     <ConnectWallet />
                     <Button
@@ -142,6 +138,28 @@ const TokenGate = () => {
                   </Flex>
                 )
               )}
+              <Flex
+                mt={4}
+                direction="column"
+                gap={2}
+                justifyContent="center"
+                alignItems="center"
+              >
+                <small>Want to learn how to token gate your own store?</small>
+                <small>
+                  Check out our guides{" "}
+                  <a
+                    href="https://blog.thirdweb.com/tag/shopify/"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      textDecoration: "underline",
+                    }}
+                  >
+                    here
+                  </a>
+                </small>
+              </Flex>
             </Flex>
           </ModalBody>
         </ModalContent>
