@@ -21,10 +21,10 @@ import { createRoot } from "react-dom/client";
 import { contractAddress, desiredChain } from "./constants";
 
 const elements = document.querySelectorAll(".thirdwebtokengate");
+const root = document.querySelector("#MainContent");
 
 const TokenGate = () => {
   const { onClose } = useDisclosure();
-
   const { contract } = useContract(contractAddress);
   const address = useAddress();
   const [owned, setOwned] = useState(false);
@@ -49,18 +49,80 @@ const TokenGate = () => {
     }
   }, [address, contract]);
 
+  // Prevent all events on the page if modal is open. This is to prevent users from interacting with the page while the modal is open, even if they delete the modal from the DOM.
+  useEffect(() => {
+    const checkoutBtn = document.querySelector(".shopify-payment-button");
+    const handleDisableEvents = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    };
+    if (!owned && checkoutBtn) {
+      checkoutBtn.style.display = "none";
+    } else if (checkoutBtn && owned) {
+      checkoutBtn.style.display = "block";
+    }
+    if (!owned && root) {
+      // Add listener to disable all events on the page
+      root.addEventListener("click", handleDisableEvents);
+      root.addEventListener("touchstart", handleDisableEvents);
+      root.addEventListener("touchmove", handleDisableEvents);
+      root.addEventListener("touchend", handleDisableEvents);
+      root.addEventListener("touchcancel", handleDisableEvents);
+      root.addEventListener("wheel", handleDisableEvents);
+      root.addEventListener("mousewheel", handleDisableEvents);
+      root.addEventListener("mousedown", handleDisableEvents);
+      root.addEventListener("keydown", handleDisableEvents);
+      root.addEventListener("keyup", handleDisableEvents);
+      root.addEventListener("keypress", handleDisableEvents);
+      root.addEventListener("submit", handleDisableEvents);
+      root.addEventListener("mouseover", handleDisableEvents);
+      // root.addEventListener("scroll", handleDisableEvents);
+    } else if (root && owned) {
+      // Remove listener to disable all events on the page
+      root.removeEventListener("click", handleDisableEvents);
+      root.removeEventListener("touchstart", handleDisableEvents);
+      root.removeEventListener("touchmove", handleDisableEvents);
+      root.removeEventListener("touchend", handleDisableEvents);
+      root.removeEventListener("touchcancel", handleDisableEvents);
+      root.removeEventListener("wheel", handleDisableEvents);
+      root.removeEventListener("mousewheel", handleDisableEvents);
+      root.removeEventListener("mousedown", handleDisableEvents);
+      root.removeEventListener("keydown", handleDisableEvents);
+      root.removeEventListener("keyup", handleDisableEvents);
+      root.removeEventListener("keypress", handleDisableEvents);
+      root.removeEventListener("submit", handleDisableEvents);
+      root.removeEventListener("mouseover", handleDisableEvents);
+      // root.removeEventListener("scroll", handleDisableEvents);
+
+      checkoutBtn.style.display = "block";
+    }
+
+    return () => {
+      if (root) {
+        // Remove listener to disable all events on the page
+        root.removeEventListener("click", handleDisableEvents);
+        root.removeEventListener("touchstart", handleDisableEvents);
+        root.removeEventListener("touchmove", handleDisableEvents);
+        root.removeEventListener("touchend", handleDisableEvents);
+        root.removeEventListener("touchcancel", handleDisableEvents);
+        root.removeEventListener("wheel", handleDisableEvents);
+        root.removeEventListener("mousewheel", handleDisableEvents);
+        root.removeEventListener("mousedown", handleDisableEvents);
+        root.removeEventListener("keydown", handleDisableEvents);
+        root.removeEventListener("keyup", handleDisableEvents);
+        root.removeEventListener("keypress", handleDisableEvents);
+        root.removeEventListener("submit", handleDisableEvents);
+        root.removeEventListener("mouseover", handleDisableEvents);
+        // root.removeEventListener("scroll", handleDisableEvents);
+      }
+      if (checkoutBtn) {
+        checkoutBtn.style.display = "block";
+      }
+    };
+  }, [root, owned]);
+
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100%",
-        backgroundColor: "red !important",
-      }}
-      id="modal-container"
-    >
+    <div style={{ position: "relative" }}>
       <Modal isOpen={!owned} onClose={onClose} isCentered size="3xl">
         <ModalOverlay
           bg="blackAlpha.300"
