@@ -186,7 +186,7 @@
             "type": "text",
             "settings": {
               "heading": "What is thirdweb?",
-              "subtext": "<p>thirdweb is a complete web3 development framework that provides everything you need to connect your apps and games to decentralized networks<\/p><p>This store is built with thirdweb's CommerceKit. You can learn how to create your own web3 commerce experiences <a href=\"https:\/\/thirdweb.com\/solutions\/commerce\" target=\"_blank\" title=\"https:\/\/thirdweb.com\/solutions\/commerce\">here<\/a>.<\/p>"
+              "subtext": "<p>thirdweb is a complete web3 development framework that provides everything you need to connect your apps and games to decentralized networks<\/p><p>This store is built with thirdweb's CommerceKit. You can learn how to create your own web3 commerce experiences <a href=\"https:\/\/thirdweb.com\/solutions\/commerce\" target=\"_blank\" title=\"https:\/\/thirdweb.com\/solutions\/commerce?utm_source=merchstore&utm_medium=footer&utm_campaign=shopify_merch_store\">here<\/a>.<\/p>"
             }
           }
         },
