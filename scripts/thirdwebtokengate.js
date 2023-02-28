@@ -19,15 +19,14 @@ import {
 } from "@thirdweb-dev/react";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { contractAddress } from "./constants";
 
 const elements = document.querySelectorAll(".thirdwebtokengate");
 
 const TokenGate = () => {
   const { onClose } = useDisclosure();
 
-  const { contract } = useContract(
-    "0x72B2D0c6Eab55028463037a5Bb22A58810105355"
-  );
+  const { contract } = useContract(contractAddress);
   const address = useAddress();
   const [owned, setOwned] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -116,7 +115,14 @@ const TokenGate = () => {
                     justifyContent="center"
                     color="white"
                   >
-                    <Text>To access this product, you'll need an NFT.</Text>
+                    <Text>
+                      To access this product, you'll need our thirdweb Builders
+                      Pass NFT.
+                    </Text>
+                    <Text>
+                      Please switch to a wallet that owns this NFT or claim one
+                      below.
+                    </Text>
                     <ConnectWallet />
                     <Button
                       variant="solid"

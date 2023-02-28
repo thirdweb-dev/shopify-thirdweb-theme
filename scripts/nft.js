@@ -13,13 +13,12 @@ import {
 } from "@thirdweb-dev/react";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { contractAddress } from "./constants";
 
 const elements = document.querySelectorAll(".nft");
 
 const RenderNFT = ({ desiredChain }) => {
-  const { contract } = useContract(
-    "0x72B2D0c6Eab55028463037a5Bb22A58810105355"
-  );
+  const { contract } = useContract(contractAddress);
   const address = useAddress();
   const { mutateAsync } = useClaimNFT(contract);
   const [owned, setOwned] = useState(false);
@@ -96,7 +95,9 @@ const RenderNFT = ({ desiredChain }) => {
       </button>
     </div>
   ) : (
-    <Spinner />
+    <Box h={48} w="full">
+      <Spinner h={24} w={24} />
+    </Box>
   );
 };
 

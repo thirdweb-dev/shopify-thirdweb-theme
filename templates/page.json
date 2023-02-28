@@ -35,11 +35,68 @@
       "type": "nft",
       "settings": {
       }
+    },
+    "efab3c45-ce79-4264-9f20-a4b55ef0e2e3": {
+      "type": "multicolumn",
+      "blocks": {
+        "template--16200447590563__efab3c45-ce79-4264-9f20-a4b55ef0e2e3-1677607313be03a2ca-0": {
+          "type": "column",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Shopify-guide-thumbnail.png",
+            "title": "Find out how we made this happen",
+            "text": "<p>We used our sdk to make this happen. Check out how to do it yourself.<\/p>",
+            "link_label": "Read Guide",
+            "link": "https:\/\/blog.thirdweb.com\/tag\/shopify\/"
+          }
+        },
+        "template--16200447590563__efab3c45-ce79-4264-9f20-a4b55ef0e2e3-1677607313be03a2ca-1": {
+          "type": "column",
+          "disabled": true,
+          "settings": {
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "template--16200447590563__efab3c45-ce79-4264-9f20-a4b55ef0e2e3-1677607313be03a2ca-2": {
+          "type": "column",
+          "disabled": true,
+          "settings": {
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16200447590563__efab3c45-ce79-4264-9f20-a4b55ef0e2e3-1677607313be03a2ca-0",
+        "template--16200447590563__efab3c45-ce79-4264-9f20-a4b55ef0e2e3-1677607313be03a2ca-1",
+        "template--16200447590563__efab3c45-ce79-4264-9f20-a4b55ef0e2e3-1677607313be03a2ca-2"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "0273fac1-d801-4b9e-8ba3-885a189af9ae",
     "main",
-    "1c0d72e1-ca99-4a4a-9604-d1bb9b22215d"
+    "1c0d72e1-ca99-4a4a-9604-d1bb9b22215d",
+    "efab3c45-ce79-4264-9f20-a4b55ef0e2e3"
   ]
 }
