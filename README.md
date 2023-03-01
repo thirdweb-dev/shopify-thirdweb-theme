@@ -59,7 +59,7 @@ elements &&
   });
 ```
 
-3. Update your entries in `webpack.config.js` to include your new component.
+3. Update your entries in `webpack.common.js` to include your new component.
 
 ```js
 entry: {
@@ -85,7 +85,7 @@ entry: {
 {% endschema %}
 ```
 
-5. Add a script tag to load your new component in the `layout/theme.liquid` file, make sure to add this at the end of the <body> tag.
+5. Add a script tag to load your new component in the `layout/theme.liquid` file, make sure to add this at the end of the `<body>` tag.
 
 ```liquid
   <script src="{{ "your-component.bundle.js" | asset_url }}"></script>
