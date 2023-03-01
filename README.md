@@ -42,6 +42,55 @@ In one terminal run `npm run dev` to start the webpack dev server, which will wa
 
 In another terminal run `shopify theme dev` to start the a local server which will let you preview your theme and make changes to your theme files.
 
+To add your own React components you simply have to do the following:
+
+1. Create a new React component in the `scripts` directory.
+2. Make sure you tell react to render your code by having the following line in your component:
+
+```jsx
+const elements = document.querySelectorAll(".your-component");
+
+// We loop through all the elements that have the class name "your-component" and render our React component inside of it, this allows you to add multiple instances of the same component to different pages.
+
+elements &&
+  [...elements].forEach((node) => {
+    const root = createRoot(node);
+    root.render(<YourComponent />);
+  });
+```
+
+3. Update your entries in `webpack.config.js` to include your new component.
+
+```js
+entry: {
+  ...,
+  "your-component": "./scripts/your-component.js",
+},
+```
+
+4. Create a new Liquid `Section` in the `sections` directory.
+
+```liquid
+<div class="your-component"></div>
+{% schema %}
+{
+  "name": "Your new component",
+  "presets": [
+    {
+      "category": "React Components",
+      "name": "Your new component"
+    }
+  ]
+}
+{% endschema %}
+```
+
+5. Add a script tag to load your new component in the `layout/theme.liquid` file, make sure to add this at the end of the <body> tag.
+
+```liquid
+  <script src="{{ "your-component.bundle.js" | asset_url }}"></script>
+```
+
 ### Publishing
 
 To publish your theme to your store run `shopify theme push` in the root of your project.
