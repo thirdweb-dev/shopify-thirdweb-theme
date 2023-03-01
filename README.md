@@ -45,7 +45,7 @@ In another terminal run `shopify theme dev` to start the a local server which wi
 To add your own React components you simply have to do the following:
 
 1. Create a new React component in the `scripts` directory.
-2. Make sure you tell react to render your code by having the following line in your component:
+2. Make sure you tell react to render your code by having the following lines at the end of your file:
 
 ```jsx
 const elements = document.querySelectorAll(".your-component");
