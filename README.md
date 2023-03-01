@@ -1,10 +1,10 @@
-# thirdweb web3 Shopify theme
+# web3 enabled Shopify theme
 
 ## Getting started
 
 This theme was cloned off of the Dawn theme [Learn more on Shopify.dev](https://shopify.dev/themes/getting-started/create).
 
-Read this guide to understand how this repo was setup. [Learn more on blog.thirdweb.com] (https://blog.thirdweb.com/guides/create-a-shopify-theme-with-thirdweb/)
+Read this guide to understand how this repo was setup. [Learn more on blog.thirdweb.com](https://blog.thirdweb.com/guides/create-a-shopify-theme-with-thirdweb/)
 
 ## What this theme includes
 
