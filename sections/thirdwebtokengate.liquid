@@ -1,4 +1,4 @@
-<div class="thirdwebtokengate"></div>
+<div class="thirdwebtokengate" data-contract-address="{{ settings.contractAddress }}"></div>
 
 {% schema %}
 {
@@ -9,6 +9,12 @@
       "id": "contractAddress",
       "label": "Contract Address",
       "default": "0x72B2D0c6Eab55028463037a5Bb22A58810105355"
+    },
+    {
+      "type": "text",
+      "id": "tokenId",
+      "label": "Token ID",
+      "default": "0"
     }
   ],
   "presets": [

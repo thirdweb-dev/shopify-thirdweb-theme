@@ -18,17 +18,20 @@ import {
 } from "@thirdweb-dev/react";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { contractAddress, desiredChain } from "./constants";
+import { desiredChain } from "./constants";
 
 const elements = document.querySelectorAll(".thirdwebtokengate");
 const root = document.querySelector("#MainContent");
 
-const TokenGate = () => {
+const TokenGate = ({ contractAddress }) => {
   const { onClose } = useDisclosure();
   const { contract } = useContract(contractAddress);
   const address = useAddress();
   const [owned, setOwned] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  console.log("contractAddress", contractAddress);
+  console.log(elements);
 
   useEffect(() => {
     if (address && contract && address) {
@@ -229,7 +232,7 @@ const TokenGate = () => {
   );
 };
 
-const Wrapper = () => {
+const Wrapper = ({ contractAddress }) => {
   return (
     <ChakraProvider
       colorModeManager={{
@@ -239,7 +242,7 @@ const Wrapper = () => {
       }}
     >
       <ThirdwebProvider activeChain={desiredChain}>
-        <TokenGate />
+        <TokenGate contractAddress={contractAddress} />
       </ThirdwebProvider>
     </ChakraProvider>
   );
@@ -248,5 +251,7 @@ const Wrapper = () => {
 elements &&
   [...elements].forEach((node) => {
     const root = createRoot(node);
-    root.render(<Wrapper />);
+    root.render(
+      <Wrapper contractAddress={node.getAttribute("data-contract-address")} />
+    );
   });
