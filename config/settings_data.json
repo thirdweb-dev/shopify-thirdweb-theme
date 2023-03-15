@@ -105,25 +105,25 @@
     "sale_badge_color_scheme": "accent-2",
     "sold_out_badge_color_scheme": "inverse",
     "accent_icons": "text",
-    "social_twitter_link": "https:\/\/twitter.com\/thirdweb",
+    "social_twitter_link": "https://twitter.com/thirdweb",
     "social_facebook_link": "",
     "social_pinterest_link": "",
     "social_instagram_link": "",
     "social_tiktok_link": "",
     "social_tumblr_link": "",
     "social_snapchat_link": "",
-    "social_youtube_link": "https:\/\/www.youtube.com\/c\/thirdweb_",
+    "social_youtube_link": "https://www.youtube.com/c/thirdweb_",
     "social_vimeo_link": "",
     "predictive_search_enabled": true,
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
-    "favicon": "shopify:\/\/shop_images\/favicon-32x32.png",
+    "favicon": "shopify://shop_images/favicon-32x32.png",
     "currency_code_enabled": true,
     "cart_type": "notification",
     "show_vendor": false,
     "show_cart_note": false,
-    "checkout_header_image": "shopify:\/\/shop_images\/Frame_427319146_56b4003d-4079-4b6b-905e-62b92e4a5571.png",
-    "checkout_logo_image": "shopify:\/\/shop_images\/Frame_427319145.png",
+    "checkout_header_image": "shopify://shop_images/Frame_427319146_56b4003d-4079-4b6b-905e-62b92e4a5571.png",
+    "checkout_logo_image": "shopify://shop_images/Frame_427319145.png",
     "checkout_logo_size": "small",
     "checkout_body_background_color": "#121212",
     "checkout_input_background_color_mode": "transparent",
@@ -142,17 +142,14 @@
             }
           }
         },
-        "block_order": [
-          "announcement-bar-0"
-        ],
-        "settings": {
-        }
+        "block_order": ["announcement-bar-0"],
+        "settings": {}
       },
       "header": {
         "type": "header",
         "settings": {
           "color_scheme": "background-1",
-          "logo": "shopify:\/\/shop_images\/Frame_427319148.png",
+          "logo": "shopify://shop_images/Frame_427319148.png",
           "logo_width": 230,
           "logo_position": "middle-left",
           "menu": "main-menu",
@@ -187,15 +184,11 @@
             "type": "text",
             "settings": {
               "heading": "What is thirdweb?",
-              "subtext": "<p>thirdweb is a complete web3 development framework that provides everything you need to connect your apps and games to decentralized networks<\/p><p>This store is built with thirdweb's CommerceKit. You can learn how to create your own web3 commerce experiences <a href=\"https:\/\/thirdweb.com\/solutions\/commerce\" target=\"_blank\" title=\"https:\/\/thirdweb.com\/solutions\/commerce?utm_source=merchstore&utm_medium=footer&utm_campaign=shopify_merch_store\">here<\/a>.<\/p>"
+              "subtext": "<p>thirdweb is a complete web3 development framework that provides everything you need to connect your apps and games to decentralized networks</p><p>This store is built with thirdweb's CommerceKit. You can learn how to create your own web3 commerce experiences <a href=\"https://thirdweb.com/solutions/commerce\" target=\"_blank\" title=\"https://thirdweb.com/solutions/commerce?utm_source=merchstore&utm_medium=footer&utm_campaign=shopify_merch_store\">here</a>.</p>"
             }
           }
         },
-        "block_order": [
-          "footer-0",
-          "footer-1",
-          "footer-2"
-        ],
+        "block_order": ["footer-0", "footer-1", "footer-2"],
         "custom_css": [
           "footer.footer.color-accent-1.gradient.section-footer-padding {margin-top: 0 !important;}"
         ],
@@ -225,11 +218,16 @@
         "settings": {
           "color_scheme": "background-1"
         }
+      },
+      "thirdwebtokengate": {
+        "type": "thirdwebtokengate",
+        "settings": {
+          "contractAddress": "0x72B2D0c6Eab55028463037a5Bb22A58810105355",
+          "tokenId": 0
+        }
       }
     },
-    "content_for_index": [
-
-    ]
+    "content_for_index": []
   },
   "presets": {
     "Default": {
@@ -368,11 +366,8 @@
               }
             }
           },
-          "block_order": [
-            "announcement-bar-0"
-          ],
-          "settings": {
-          }
+          "block_order": ["announcement-bar-0"],
+          "settings": {}
         },
         "header": {
           "type": "header",
@@ -412,15 +407,11 @@
               "type": "text",
               "settings": {
                 "heading": "Our mission",
-                "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+                "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>"
               }
             }
           },
-          "block_order": [
-            "footer-0",
-            "footer-1",
-            "footer-2"
-          ],
+          "block_order": ["footer-0", "footer-1", "footer-2"],
           "settings": {
             "color_scheme": "background-1",
             "newsletter_enable": true,

@@ -14,8 +14,9 @@ import {
   ConnectWallet,
   ThirdwebProvider,
   useAddress,
-  useContract,
+  useSDK,
 } from "@thirdweb-dev/react";
+import * as ethers from "ethers";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { desiredChain } from "./constants";
@@ -23,15 +24,31 @@ import { desiredChain } from "./constants";
 const elements = document.querySelectorAll(".thirdwebtokengate");
 const root = document.querySelector("#MainContent");
 
-const TokenGate = ({ contractAddress }) => {
+const TokenGate = ({ contractAddress, tokenId }) => {
   const { onClose } = useDisclosure();
-  const { contract } = useContract(contractAddress);
+  const sdk = useSDK();
   const address = useAddress();
+  const [contract, setContract] = useState(null);
   const [owned, setOwned] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (sdk && ethers.utils.isAddress(contractAddress)) {
+      sdk
+        .getContract(contractAddress)
+        .then((contract) => {
+          if (contract) {
+            setContract(contract);
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [sdk, contractAddress]);
+
   console.log("contractAddress", contractAddress);
-  console.log(elements);
+  console.log("contract", contract);
 
   useEffect(() => {
     if (address && contract && address) {
@@ -232,7 +249,7 @@ const TokenGate = ({ contractAddress }) => {
   );
 };
 
-const Wrapper = ({ contractAddress }) => {
+const Wrapper = ({ contractAddress, tokenId }) => {
   return (
     <ChakraProvider
       colorModeManager={{
@@ -242,7 +259,7 @@ const Wrapper = ({ contractAddress }) => {
       }}
     >
       <ThirdwebProvider activeChain={desiredChain}>
-        <TokenGate contractAddress={contractAddress} />
+        <TokenGate contractAddress={contractAddress} tokenId={tokenId} />
       </ThirdwebProvider>
     </ChakraProvider>
   );
@@ -252,6 +269,9 @@ elements &&
   [...elements].forEach((node) => {
     const root = createRoot(node);
     root.render(
-      <Wrapper contractAddress={node.getAttribute("data-contract-address")} />
+      <Wrapper
+        contractAddress={node.getAttribute("data-contract-address")}
+        tokenId={node.getAttribute("data-token-id")}
+      />
     );
   });
