@@ -1,7 +1,7 @@
 <div
   class="thirdwebtokengate"
   data-contract-address="{{ section.settings.contractAddress }}"
-  data-token-id="{{ section.settings.tokenId }}"
+  data-chain-name="{{ section.settings.chainName }}"
 ></div>
 
 {% schema %}
@@ -16,9 +16,9 @@
     },
     {
       "type": "text",
-      "id": "tokenId",
-      "label": "Token ID",
-      "default": "0"
+      "id": "chainName",
+      "label": "Chain Name",
+      "default": "polygon"
     }
   ],
   "presets": [

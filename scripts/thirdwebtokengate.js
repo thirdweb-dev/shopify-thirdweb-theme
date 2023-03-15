@@ -9,46 +9,29 @@ import {
   Spinner,
   Text,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import {
   ConnectWallet,
   ThirdwebProvider,
   useAddress,
-  useSDK,
+  useContract,
 } from "@thirdweb-dev/react";
 import * as ethers from "ethers";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { desiredChain } from "./constants";
 
 const elements = document.querySelectorAll(".thirdwebtokengate");
 const root = document.querySelector("#MainContent");
 
-const TokenGate = ({ contractAddress, tokenId }) => {
+const TokenGate = ({ contractAddress }) => {
   const { onClose } = useDisclosure();
-  const sdk = useSDK();
+  const { contract } = useContract(contractAddress);
   const address = useAddress();
-  const [contract, setContract] = useState(null);
   const [owned, setOwned] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (sdk && ethers.utils.isAddress(contractAddress)) {
-      sdk
-        .getContract(contractAddress)
-        .then((contract) => {
-          if (contract) {
-            setContract(contract);
-          }
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, [sdk, contractAddress]);
-
-  console.log("contractAddress", contractAddress);
-  console.log("contract", contract);
+  const isValid = ethers.utils.isAddress(contractAddress);
+  const toast = useToast();
 
   useEffect(() => {
     if (address && contract && address) {
@@ -141,6 +124,21 @@ const TokenGate = ({ contractAddress, tokenId }) => {
     };
   }, [root, owned]);
 
+  useEffect(() => {
+    if (!isValid) {
+      toast({
+        title: "Invalid contract address",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  }, [isValid]);
+
+  if (!isValid) {
+    return null;
+  }
+
   return (
     <div style={{ position: "relative" }}>
       <Modal isOpen={!owned} onClose={onClose} isCentered size="3xl">
@@ -154,6 +152,7 @@ const TokenGate = ({ contractAddress, tokenId }) => {
           minW="xl"
           rounded="3xl"
           outline="0.5px solid rgba(255, 255, 255, 0.7)"
+          zIndex={0}
         >
           <ModalBody
             minH="250px"
@@ -249,7 +248,7 @@ const TokenGate = ({ contractAddress, tokenId }) => {
   );
 };
 
-const Wrapper = ({ contractAddress, tokenId }) => {
+const Wrapper = ({ contractAddress, chainName }) => {
   return (
     <ChakraProvider
       colorModeManager={{
@@ -258,8 +257,8 @@ const Wrapper = ({ contractAddress, tokenId }) => {
         set: () => {},
       }}
     >
-      <ThirdwebProvider activeChain={desiredChain}>
-        <TokenGate contractAddress={contractAddress} tokenId={tokenId} />
+      <ThirdwebProvider activeChain={chainName}>
+        <TokenGate contractAddress={contractAddress} />
       </ThirdwebProvider>
     </ChakraProvider>
   );
@@ -271,7 +270,7 @@ elements &&
     root.render(
       <Wrapper
         contractAddress={node.getAttribute("data-contract-address")}
-        tokenId={node.getAttribute("data-token-id")}
+        chainName={node.getAttribute("chain-name")}
       />
     );
   });
