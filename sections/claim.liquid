@@ -1,0 +1,38 @@
+<div
+  class="claim"
+  data-contract-address="{{ section.settings.contractAddress }}"
+  data-token-id="{{ section.settings.tokenId }}"
+  data-chain-name="{{ section.settings.chainName }}"
+></div>
+
+{% schema %}
+{
+  "name": "Claim Block",
+  "settings": [
+    {
+      "id": "contractAddress",
+      "label": "Contract Address",
+      "type": "text",
+      "default": "0x72B2D0c6Eab55028463037a5Bb22A58810105355"
+    },
+    {
+      "id": "tokenId",
+      "label": "Token ID",
+      "type": "text",
+      "default": "0"
+    },
+    {
+      "type": "text",
+      "id": "chainName",
+      "label": "Chain Name",
+      "default": "polygon"
+    }
+  ],
+  "presets": [
+    {
+      "category": "React Components",
+      "name": "Claim Block"
+    }
+  ]
+}
+{% endschema %}

@@ -13,7 +13,7 @@ function normalizeName(name) {
 module.exports = {
   entry: {
     // This is where we'll connect our react code to be bundled. Will show later
-    nft: "./scripts/nft.js",
+    claim: "./scripts/claim.js",
     thirdwebtokengate: "./scripts/thirdwebtokengate.js",
   },
   module: {
