@@ -23,17 +23,20 @@
         "padding_bottom": 52
       }
     },
+    "2ec90488-0a18-479c-a0e8-149e19577250": {
+      "type": "claim",
+      "settings": {
+        "contractAddress": "0x72B2D0c6Eab55028463037a5Bb22A58810105355",
+        "tokenId": "1",
+        "chainName": "polygon"
+      }
+    },
     "main": {
       "type": "main-page",
       "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28
-      }
-    },
-    "1c0d72e1-ca99-4a4a-9604-d1bb9b22215d": {
-      "type": "nft",
-      "settings": {
       }
     },
     "efab3c45-ce79-4264-9f20-a4b55ef0e2e3": {
@@ -95,8 +98,8 @@
   },
   "order": [
     "0273fac1-d801-4b9e-8ba3-885a189af9ae",
+    "2ec90488-0a18-479c-a0e8-149e19577250",
     "main",
-    "1c0d72e1-ca99-4a4a-9604-d1bb9b22215d",
     "efab3c45-ce79-4264-9f20-a4b55ef0e2e3"
   ]
 }
