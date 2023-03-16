@@ -1,7 +1,7 @@
 {
   "name": "shopify-thirdweb-theme",
   "version": "1.0.0",
-  "description": "[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain)\r [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)",
+  "description": "[![Build status](https://github.com/thirdweb-dev/shopify-thirdweb-theme/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/thirdweb-dev/shopify-thirdweb-theme/actions/workflows/ci.yml?query=branch%3Amain)\r [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)",
   "main": "webpack.common.js",
   "scripts": {
     "dev": "webpack --config webpack.dev.js --progress --color",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Shopify/dawn.git"
+    "url": "git+https://github.com/thirdweb-dev/shopify-thirdweb-theme"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Shopify/dawn/issues"
+    "url": "https://github.com/thirdweb-dev/shopify-thirdweb-theme/issues"
   },
-  "homepage": "https://github.com/Shopify/dawn#readme",
+  "homepage": "https://github.com/thirdweb-dev/shopify-thirdweb-theme#readme",
   "dependencies": {
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
