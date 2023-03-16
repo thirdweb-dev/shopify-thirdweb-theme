@@ -20,17 +20,20 @@ import {
 import * as ethers from "ethers";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+import CustomToast from "./components/Toast";
+import { ChainNames } from "./constants";
 
 const elements = document.querySelectorAll(".thirdwebtokengate");
 const root = document.querySelector("#MainContent");
 
-const TokenGate = ({ contractAddress }) => {
+const TokenGate = ({ contractAddress, chainName }) => {
   const { onClose } = useDisclosure();
   const { contract } = useContract(contractAddress);
   const address = useAddress();
   const [owned, setOwned] = useState(false);
   const [loading, setLoading] = useState(false);
   const isValid = ethers.utils.isAddress(contractAddress);
+  const isValidChainName = !!ChainNames.find((name) => name === chainName);
   const toast = useToast();
 
   useEffect(() => {
@@ -124,18 +127,39 @@ const TokenGate = ({ contractAddress }) => {
     };
   }, [root, owned]);
 
+  // Validate chain name and contract address
   useEffect(() => {
     if (!isValid) {
       toast({
-        title: "Invalid contract address",
         status: "error",
-        duration: 5000,
+        duration: 7000,
         isClosable: true,
+        position: "top",
+        render: () => (
+          <CustomToast
+            title="Invalid contract address"
+            description="Please check the contract address in the token gate section"
+          />
+        ),
+      });
+    }
+    if (!isValidChainName) {
+      toast({
+        status: "error",
+        duration: 7000,
+        isClosable: true,
+        position: "top",
+        render: () => (
+          <CustomToast
+            title="Invalid chain name"
+            description="Please check the chain name in the token gate section"
+          />
+        ),
       });
     }
   }, [isValid]);
 
-  if (!isValid) {
+  if (!isValid || !isValidChainName) {
     return null;
   }
 
@@ -258,7 +282,7 @@ const Wrapper = ({ contractAddress, chainName }) => {
       }}
     >
       <ThirdwebProvider activeChain={chainName}>
-        <TokenGate contractAddress={contractAddress} />
+        <TokenGate contractAddress={contractAddress} chainName={chainName} />
       </ThirdwebProvider>
     </ChakraProvider>
   );
