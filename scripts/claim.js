@@ -1,4 +1,10 @@
-import { Box, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  ChakraProvider,
+  Spinner,
+  useToast,
+} from "@chakra-ui/react";
 import {
   ConnectWallet,
   ThirdwebNftMedia,
@@ -12,11 +18,12 @@ import {
 } from "@thirdweb-dev/react";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { desiredChain } from "./constants";
+import CustomToast from "./components/Toast";
+import { desiredChain, isValidAddress, isValidChainName } from "./constants";
 
 const elements = document.querySelectorAll(".claim");
 
-const ClaimNFT = ({ contractAddress, tokenId }) => {
+const ClaimNFT = ({ contractAddress, tokenId, chainName }) => {
   const { contract } = useContract(contractAddress);
   const address = useAddress();
   const { mutateAsync } = useClaimNFT(contract);
@@ -24,6 +31,10 @@ const ClaimNFT = ({ contractAddress, tokenId }) => {
   const [loading, setLoading] = useState(false);
   const [, switchNetwork] = useNetwork();
   const isMismatched = useNetworkMismatch();
+  const { data: nft, isLoading, status } = useNFT(contract, tokenId);
+  const isValidContractAddress = isValidAddress(contractAddress);
+  const _isValidChainName = isValidChainName(chainName);
+  const toast = useToast();
 
   useEffect(() => {
     if (address && contract) {
@@ -61,26 +72,59 @@ const ClaimNFT = ({ contractAddress, tokenId }) => {
     }
   };
 
+  useEffect(() => {
+    if (!isValidContractAddress) {
+      toast({
+        status: "error",
+        duration: 7000,
+        isClosable: true,
+        position: "top",
+        render: () => (
+          <CustomToast
+            title="Invalid contract address"
+            description="Please check the contract address in the token gate section"
+          />
+        ),
+      });
+    } else if (!_isValidChainName) {
+      toast({
+        status: "error",
+        duration: 7000,
+        isClosable: true,
+        position: "top",
+        render: () => (
+          <CustomToast
+            title="Invalid chain name"
+            description="Please check the chain name in the token gate section"
+          />
+        ),
+      });
+    }
+  }, [isValidContractAddress, _isValidChainName]);
+
+  if (!isValidContractAddress || !_isValidChainName) return null;
+
   // Load (and cache) the metadata for the NFT with token ID
-  const { data: nft, isLoading } = useNFT(contract, tokenId);
   return !isLoading && nft ? (
     <div>
-      <Box p={4} bg="whiteAlpha.800" roundedTop="lg">
-        <ThirdwebNftMedia height="200px" metadata={nft.metadata} />
-      </Box>
+      <ThirdwebNftMedia height="200px" metadata={nft.metadata} />
       <ConnectWallet />
-      <button
+      <Button
         onClick={handleClaim}
         style={{
           background: "black",
           color: "white",
           width: "100%",
-          padding: "11.25px",
           borderRadius: "0.5rem",
           marginTop: "1rem",
           cursor: "pointer",
         }}
-        disabled={!address || (!isMismatched && owned)}
+        isDisabled={!address || (!isMismatched && owned)}
+        isLoading={loading}
+        _hover={{ background: "blackAlpha.700" }}
+        size="lg"
+        fontSize="2xl"
+        py={8}
       >
         {!address
           ? "Connect Wallet"
@@ -91,16 +135,22 @@ const ClaimNFT = ({ contractAddress, tokenId }) => {
           : loading
           ? "claiming..."
           : "Claim NFT"}
-      </button>
+      </Button>
     </div>
   ) : (
-    <Box h={48} w="full">
-      <Spinner h={24} w={24} />
+    <Box
+      h={48}
+      w="full"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Spinner h={24} w={24} mx="auto" />
     </Box>
   );
 };
 
-const MyFirstWeb3Island = ({ contractAddress, tokenId, chainName }) => {
+const Claim = ({ contractAddress, tokenId, chainName }) => {
   return (
     <ThirdwebProvider activeChain={chainName}>
       <div
@@ -112,7 +162,19 @@ const MyFirstWeb3Island = ({ contractAddress, tokenId, chainName }) => {
           alignItems: "center",
         }}
       >
-        <ClaimNFT contractAddress={contractAddress} tokenId={tokenId} />
+        <ChakraProvider
+          colorModeManager={{
+            type: "localStorage",
+            get: () => "dark",
+            set: () => {},
+          }}
+        >
+          <ClaimNFT
+            contractAddress={contractAddress}
+            tokenId={tokenId}
+            chainName={chainName}
+          />
+        </ChakraProvider>
       </div>
     </ThirdwebProvider>
   );
@@ -125,7 +187,7 @@ elements &&
     const tokenId = node.getAttribute("data-token-id");
     const chainName = node.getAttribute("data-chain-name");
     root.render(
-      <MyFirstWeb3Island
+      <Claim
         contractAddress={contractAddress}
         tokenId={tokenId}
         chainName={chainName}

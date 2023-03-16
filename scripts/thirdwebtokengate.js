@@ -17,11 +17,10 @@ import {
   useAddress,
   useContract,
 } from "@thirdweb-dev/react";
-import * as ethers from "ethers";
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import CustomToast from "./components/Toast";
-import { ChainNames } from "./constants";
+import { isValidAddress, isValidChainName } from "./constants";
 
 const elements = document.querySelectorAll(".thirdwebtokengate");
 const root = document.querySelector("#MainContent");
@@ -32,8 +31,8 @@ const TokenGate = ({ contractAddress, chainName }) => {
   const address = useAddress();
   const [owned, setOwned] = useState(false);
   const [loading, setLoading] = useState(false);
-  const isValid = ethers.utils.isAddress(contractAddress);
-  const isValidChainName = !!ChainNames.find((name) => name === chainName);
+  const isValidContractAddress = isValidAddress(contractAddress);
+  const _isValidChainName = isValidChainName(chainName);
   const toast = useToast();
 
   useEffect(() => {
@@ -129,7 +128,7 @@ const TokenGate = ({ contractAddress, chainName }) => {
 
   // Validate chain name and contract address
   useEffect(() => {
-    if (!isValid) {
+    if (!isValidContractAddress) {
       toast({
         status: "error",
         duration: 7000,
@@ -143,7 +142,7 @@ const TokenGate = ({ contractAddress, chainName }) => {
         ),
       });
     }
-    if (!isValidChainName) {
+    if (!_isValidChainName) {
       toast({
         status: "error",
         duration: 7000,
@@ -157,9 +156,9 @@ const TokenGate = ({ contractAddress, chainName }) => {
         ),
       });
     }
-  }, [isValid]);
+  }, [isValidContractAddress]);
 
-  if (!isValid || !isValidChainName) {
+  if (!isValidContractAddress || !_isValidChainName) {
     return null;
   }
 
@@ -294,7 +293,7 @@ elements &&
     root.render(
       <Wrapper
         contractAddress={node.getAttribute("data-contract-address")}
-        chainName={node.getAttribute("chain-name")}
+        chainName={node.getAttribute("data-chain-name")}
       />
     );
   });
