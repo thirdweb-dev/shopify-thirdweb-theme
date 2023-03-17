@@ -19,7 +19,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import CustomToast from "./components/Toast";
-import { desiredChain, isValidAddress, isValidChainName } from "./constants";
+import { isValidAddress, isValidChainName } from "./constants";
 
 const elements = document.querySelectorAll(".claim");
 
@@ -63,7 +63,7 @@ const ClaimNFT = ({ contractAddress, tokenId, chainName }) => {
   const handleClaim = async () => {
     if (isMismatched) {
       try {
-        await switchNetwork(desiredChain);
+        await switchNetwork(chainName);
       } catch (err) {
         console.error(err);
       }
